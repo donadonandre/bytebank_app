@@ -97,7 +97,7 @@ class ListaTransferencias extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: Text('Tranferências'),),
-      body: Column(children: <Widget>[
+      body: ListView(children: <Widget>[
         ItemTransferencia(Transferencia(100.0, 1000)),
         ItemTransferencia(Transferencia(200.0, 2000)),
         ItemTransferencia(Transferencia(300.0, 3000)),
