@@ -12,7 +12,7 @@ class ByteBankApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: FormularioTransferencia(),
+        body: ListaTransferencias(),
       ),
     );
   }
@@ -95,6 +95,7 @@ class ListaTransferencias extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      appBar: AppBar(title: Text('Tranferências'),),
       body: Column(children: <Widget>[
         ItemTransferencia(Transferencia(100.0, 1000)),
         ItemTransferencia(Transferencia(200.0, 2000)),
