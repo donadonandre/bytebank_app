@@ -101,34 +101,40 @@ class ListaTransferencias extends StatefulWidget {
     throw UnimplementedError();
   }
 
+
+}
+
+// O Stateful precisa traballhar com um state
+class ListaTransferenciasState extends State<ListaTransferencias> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: Text('Tranferências'),),
       body:
-          ListView.builder(
-              itemCount: _transferencias.length,
-              itemBuilder: (context, indice){
-                final transferencia = _transferencias[indice];
-                return ItemTransferencia(transferencia);
-              },
-          ),
+      ListView.builder(
+        itemCount: _transferencias.length,
+        itemBuilder: (context, indice){
+          final transferencia = _transferencias[indice];
+          return ItemTransferencia(transferencia);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () { 
-            final Future<Transferencia> future = Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return FormularioTransferencia();
-            }));
-            future.then((transferenciaRecebida) {
-              debugPrint('Chegou no Then do future');
-              debugPrint('$transferenciaRecebida');
-              _transferencias.add(transferenciaRecebida);
-            });
+        onPressed: () {
+          final Future<Transferencia> future = Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return FormularioTransferencia();
+          }));
+          future.then((transferenciaRecebida) {
+            debugPrint('Chegou no Then do future');
+            debugPrint('$transferenciaRecebida');
+            _transferencias.add(transferenciaRecebida);
+          });
         },
         child: Icon(Icons.add),
       ),
     );
   }
+  // Nesse caso é só pegar o build do Stateless que fizemos antes
 }
 
 class ItemTransferencia extends StatelessWidget {
