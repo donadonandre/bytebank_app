@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -6,8 +5,6 @@ import 'package:flutter/material.dart';
 void main() => runApp(ByteBankApp());
 
 class ByteBankApp extends StatelessWidget {
-  const ByteBankApp({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,7 +50,7 @@ class FormularioTransferencia extends StatelessWidget {
     final int numeroConta =
         int.tryParse(_controladorNumeroConta.text);
     final double valor =
-        double.tryParse(_controladorNumeroConta.text);
+        double.tryParse(_controladorValor.text);
 
     if (numeroConta!=null && valor!=null) {
         final transferenciaCriada = Transferencia(valor, numeroConta);
@@ -92,30 +89,27 @@ class Editor extends StatelessWidget {
 
 
 class ListaTransferencias extends StatefulWidget {
-
-  final List<Transferencia> _transferencias = [];
+  final List<Transferencia> _transferencias = List();
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
+    return ListaTransferenciasState();
   }
-
-
 }
 
 // O Stateful precisa traballhar com um state
 class ListaTransferenciasState extends State<ListaTransferencias> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    //widget._transferencias.add(Transferencia(300, 4000));
+
     return Scaffold(
       appBar: AppBar(title: Text('Tranferências'),),
       body:
       ListView.builder(
-        itemCount: _transferencias.length,
+        itemCount: widget._transferencias.length,
         itemBuilder: (context, indice){
-          final transferencia = _transferencias[indice];
+          final transferencia = widget._transferencias[indice];
           return ItemTransferencia(transferencia);
         },
       ),
@@ -127,7 +121,9 @@ class ListaTransferenciasState extends State<ListaTransferencias> {
           future.then((transferenciaRecebida) {
             debugPrint('Chegou no Then do future');
             debugPrint('$transferenciaRecebida');
-            _transferencias.add(transferenciaRecebida);
+            widget._transferencias.add(transferenciaRecebida);
+            final tamanho = widget._transferencias.length;
+            debugPrint('Tamanho: $tamanho');
           });
         },
         child: Icon(Icons.add),
@@ -144,7 +140,6 @@ class ItemTransferencia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Card(
       child: ListTile(
         leading: Icon(Icons.monetization_on),
