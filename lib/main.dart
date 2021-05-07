@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -12,9 +13,6 @@ class ByteBankApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: FormularioTransferencia(),
-        appBar: AppBar(
-          title: Text('Transferências'),
-        ),
       ),
     );
   }
@@ -24,7 +22,44 @@ class ByteBankApp extends StatelessWidget {
 class FormularioTransferencia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: Text('Criando Transferência'),),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 24.0
+              ),
+              decoration: InputDecoration(
+                labelText: 'Número da conta',
+                hintText: '0000'
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              style: TextStyle(
+                fontSize: 24.0
+              ),
+              decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: 'Valor',
+                hintText: '0.00'
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          ElevatedButton(
+              onPressed: null,
+              child: Text('Confirmar')
+          )
+        ],
+      ),
+    );
   }
 
 }
