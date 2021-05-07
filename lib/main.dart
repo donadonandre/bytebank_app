@@ -57,7 +57,7 @@ class FormularioTransferencia extends StatelessWidget {
 
     if (numeroConta!=null && valor!=null) {
         final transferenciaCriada = Transferencia(valor, numeroConta);
-        debugPrint(transferenciaCriada)
+        debugPrint(transferenciaCriada);
     }
   }
 }
@@ -69,7 +69,8 @@ class Editor extends StatelessWidget {
   final String dica;
   final IconData icone;
 
-  Editor({this.controlador, this.rotulo, this.dica, this.icone});
+  // Item obrigatorio eu coloco fora dos {}
+  Editor(String teste, {this.controlador, this.rotulo, this.dica, this.icone});
 
   @override
   Widget build(BuildContext context) {
